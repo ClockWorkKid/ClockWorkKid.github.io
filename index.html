@@ -145,10 +145,12 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Problem Definition</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+           	LIDAR scanners are crucial components in autonomous systems, providing point cloud data that is integral for perceiving surroundings. However, processing this unstructured data in object detection frameworks involves significant computational overhead. Current methods, like the PointPillars architecture, convert point clouds into a structured format resembling voxels, leading to computational redundancy due to sparse data representation.
+Efficient processing of LIDAR data is essential for real-time applications like autonomous driving. The majority of computation in object detection frameworks occurs during the conversion of voxelized data in the feature extraction stage. This bottleneck necessitates optimization to enhance computational efficiency without compromising detection accuracy. Current approaches, such as Matryoshka Representation Learning, offer promising avenues by selectively pruning feature channels, thereby reducing computational load while maintaining acceptable detection performance levels.
+This project aims to explore and optimize the integration of network pruning techniques within the PointPillars framework. By leveraging adaptive latent regularization, we seek to significantly reduce computation and memory requirements while evaluating its impact on detection accuracy across different scenes and object classes. 
           </p>
         </div>
       </div>
