@@ -84,7 +84,22 @@
   </div>
 </section>
 
-
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our work aims to reduce the computation in a deep neural network model deployed in 3D object detection task by removing channels in different model layers and optimizing inference. Structured pruning methods, such as CoFi, combine coarse and fine-grained units with layer-wise distillation to enhance model compression and inference speed without significant accuracy loss (Yu et al.; Wang et al.). Layer and head pruning in Transformer models also effectively reduce model size while maintaining performance (Yu et al.). Regularization-based pruning methods like L1 regularization and growing regularization gradually drive unimportant weights to zero before pruning, balancing parameter reduction and accuracy (Yeh et al.; Wang et al., "Neural Pruning via Growing Regularization"). Importance-based pruning uses criteria like neuron importance score propagation (NISP) and Taylor expansion-based methods to iteratively prune less important neurons, retaining essential features and performance (Yu et al.; Molchanov et al.; Sunil and Salem; Liu et al.). These techniques collectively improve the efficiency and performance of neural networks by systematically reducing their complexity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
 
 
 <!-- Paper abstract -->
@@ -95,7 +110,7 @@
         <h2 class="title is-3">Problem Definition</h2>
         <div class="content has-text-justified">
           <p>
-           	LIDAR scanners are crucial components in autonomous systems, providing point cloud data that is integral for perceiving surroundings. However, processing this unstructured data in object detection frameworks involves significant computational overhead. Current methods, like the PointPillars architecture, convert point clouds into a structured format resembling voxels, leading to computational redundancy due to sparse data representation.
+           	LIDAR scanners are crucial components in autonomous systems, providing point cloud data that is integral for perceiving surroundings. However, processing this unstructured data in object detection frameworks involves significant computational overhead. Current methods, like the PointPillars (Lang, Alex H., et al.) architecture, convert point clouds into a structured format resembling voxels, leading to computational redundancy due to sparse data representation.
 Efficient processing of LIDAR data is essential for real-time applications like autonomous driving. The majority of computation in object detection frameworks occurs during the conversion of voxelized data in the feature extraction stage. This bottleneck necessitates optimization to enhance computational efficiency without compromising detection accuracy. Current approaches, such as Matryoshka Representation Learning, offer promising avenues by selectively pruning feature channels, thereby reducing computational load while maintaining acceptable detection performance levels.
 This project aims to explore and optimize the integration of network pruning techniques within the PointPillars framework. By leveraging adaptive latent regularization, we seek to significantly reduce computation and memory requirements while evaluating its impact on detection accuracy across different scenes and object classes. 
           </p>
@@ -106,6 +121,42 @@ This project aims to explore and optimize the integration of network pruning tec
 </section>
 <!-- End paper abstract -->
 
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            Pointcloud data is a framewise stream of points that reflect LASER in the Cartesian coordinate system. For object detection in pointcloud, the space is first converted to a grid structure called voxels. In the PointPillars architecture, the points are first filtered within a field of view and range from the source. Then the points are grouped into pillars in the x-y plane. Points in each pillar are augmented with additional points, ensuring each pillar contains the same number of points. Then the pillars individually pass through an invariant dense layer creating a fixed number of features. All the features from the x-y plane create 2D pseudo images. During the preprocessing and pillar encoding, noise is added to the data as well to compensate for sensor uncertainty. Rotation, flipping etc are also other augmentation methods. 
+
+            Some of the widely used algorithms in object detection frameworks are anchor generation, bounding box encoding and non-max suppression of candidate boundingboxes. Models like PointNet, PointNet++, PV-RCNN, VoxelNet, F-ConvNet etc are used for 3D object detection. In the most common object detection pipeline, there are a few modules called the encoder, backbone and the model head. The dense backbone is responsible for feature processing and contains most of the computation of the model. Our aim is to make our learning approach model agnostic such that the pruning method should be extendable to all convolution/dense layer based neural network architectures. 
+            
+            Our work primarily works with the optimization of model architecture, applicable on parallel channels in each layer. The key motivation is that not all feature channels are necessary for learning, and often the latent space contains empty features. The pruning method regularizes the channels in such a way that each higher channel output will have a higher penalty. This ensures that the model will try to reduce the unnecessary channels to zero output. During inference, a smaller model can be distilled, containing only the non-zero parts of the parent model.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            The key goal is to retain object detection performance across different driving scenes while reducing the frame-by-frame computation as much as possible. In this regard, we will look at the performance vs computation graphs at the end of the project. Hypothetically, performance vs computation graph should have and upward trend. Our key aim is to reduce the slope of the curve as much as possible - meaning that model computation can be drastically reduced without much loss in performance. Some of the key metrics for performance in 3D object detection are: 2D average precision (AP), birds eye view (BEV) AP, 3D AP. And for the model computation, we will take the MACs/FLOPs of the architecture during inference.          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
 
 <!-- Literature Review -->
 <section class="section hero is-light">
@@ -119,7 +170,10 @@ This project aims to explore and optimize the integration of network pruning tec
           </p>
           <h2>References</h2>
           <ol>
-            <li>
+          <li>
+              Lang, Alex H., et al. "Pointpillars: Fast encoders for object detection from point clouds." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2019.
+          </li>
+          <li>
               Yu, Chenglin, et al. "Structured Pruning Learns Compact and Accurate Models." <em>arXiv</em>, 2022.
           </li>
           <li>
