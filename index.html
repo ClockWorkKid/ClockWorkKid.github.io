@@ -132,10 +132,10 @@ This project aims to explore and optimize the integration of network pruning tec
             Pointcloud data is a framewise stream of points that reflect LASER in the Cartesian coordinate system. For object detection in pointcloud, the space is first converted to a grid structure called voxels. In the PointPillars architecture, the points are first filtered within a field of view and range from the source. Then the points are grouped into pillars in the x-y plane. Points in each pillar are augmented with additional points, ensuring each pillar contains the same number of points. Then the pillars individually pass through an invariant dense layer creating a fixed number of features. All the features from the x-y plane create 2D pseudo images. During the preprocessing and pillar encoding, noise is added to the data as well to compensate for sensor uncertainty. Rotation, flipping etc are also other augmentation methods. 
           </p> <p>
             Some of the widely used algorithms in object detection frameworks are anchor generation, bounding box encoding and non-max suppression of candidate boundingboxes. Models like PointNet, PointNet++, PV-RCNN, VoxelNet, F-ConvNet etc are used for 3D object detection. In the most common object detection pipeline, there are a few modules called the encoder, backbone and the model head. The dense backbone is responsible for feature processing and contains most of the computation of the model. Our aim is to make our learning approach model agnostic such that the pruning method should be extendable to all convolution/dense layer based neural network architectures. 
-            <img src="figs/pointpillars.png" alt="PointPillars architecture">
+            <img src="fig/pointpillars.png" alt="PointPillars architecture">
           </p><p>
             Our work primarily works with the optimization of model architecture, applicable on parallel channels in each layer. The key motivation is that not all feature channels are necessary for learning, and often the latent space contains empty features. The pruning method regularizes the channels in such a way that each higher channel output will have a higher penalty. This ensures that the model will try to reduce the unnecessary channels to zero output. During inference, a smaller model can be distilled, containing only the non-zero parts of the parent model.
-            <img src="figs/pruning.png" alt="Proposed pruning method">
+            <img src="fig/pruning.png" alt="Proposed pruning method">
           </p>
         </div>
       </div>
