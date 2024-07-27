@@ -151,6 +151,25 @@
               <img src="fig/computation.png" alt="Computation">
               <figcaption>Reducing feature volume from pillar feature net to backbone by 75% can reduce host computation by ~93.2% and memory usage by ~93.6%.</figcaption>              
             </figure> 
+            <h4>Final Checkpoint</h4>
+            In the second stage of our project, we take a look at reducing computation along the temporal axis of the video point cloud data. In this part, the key argument is that for very small time steps, the change of features in the spatial domain is also very small. So we can (1) Reuse some features calculated in the previous time step (2) Linearize some features calculated in the previous time step and estimate the future featuers. Based on this argument, we experiment with three separate models. (a) Feature Gating (b) Temporal Feature Linearization (c) Adaptive Feature Linearization. All these experiments aim to take advantage of the temporal redundancy of the data. 
+            <figure>
+              <img src="fig/gating.png" alt="gating">
+              <figcaption>(a) Feature Gating </figcaption>
+            </figure>
+            (a) NN models have many parallel operations, i.e. each output channel of a convolutional layer uses a separate filter kernel. Parallel computations can be replaced by reusing features from a previous time step. We introduce a temporal gating function that chooses whether to recompute new features or pass existing features from previous time-step to the next layer. 
+            <figure>
+              <img src="fig/linearization.png" alt="linearization">
+              <figcaption>(b) Temporal Feature Linearization </figcaption>
+            </figure>
+            (b) Instead of fully computing features in each time step, we try to estimate the outputs of the backbone with a smaller model. The small estimator model bypasses the backbone and estimates the output feature difference based on the input feature difference. Bypassing the backbone can hugely reduce the computation
+            
+            <figure>
+              <img src="fig/adaptive.png" alt="adaptive">
+              <figcaption>(c) Adaptive Feature Linearization </figcaption>
+            </figure>
+            (c) The adaptive gating mechanism makes decision on when to start a new estimation sequence. The gate creates a geometric probability of when to switch based on the switching on previous time steps.
+            
           </p>
         </div>
       </div>
@@ -181,11 +200,7 @@
               <img src="fig/matryoshka_out_2D.png" alt="2D">
               <figcaption>2D bounding box average precision for easy-medium-hard splits for different feature channels </figcaption>              
             </figure> 
-            For the 3D bounding boxes, the performance consistently goes down. As shown later, the different feature channels do not learn any form of sparsity, which might be one of the key reasons why pruning channels result in performance loss.
-            <figure>
-              <img src="fig/matryoshka_out_3D.png" alt="3D">
-              <figcaption>3D bounding box average precision for easy-medium-hard splits for different feature channels</figcaption>              
-            </figure> 
+
             <figure>
               <img src="fig/matryoshka_qualitative_easy.png" alt="qualeasy">
               <figcaption>Visual detection results in an easy scene. We can see that vehicles (large objects) are mostly detected fine in easy scenes for any number of feature channels.</figcaption>              
@@ -194,10 +209,29 @@
               <img src="fig/matryoshka_qualitative_hard.png" alt="qualHard">
               <figcaption>Visual results in a difficult scene. We can see that lowering the number of channels is often causing false detections in smaller objects.</figcaption>              
             </figure>  
+            <h4>Final Checkpoint</h4>
+            In the following table, we combine the results of the Matryoshka representation learning scheme as well as the temporal feature reuse methods that we experimented with.
             <figure>
-              <img src="fig/matryoshka_energy.png" alt="energy">
-              <figcaption>Channel-wise energy of 64 channels for 20 random samples. We can see that there is no specific trend in the feature energies, meaning that feature channels are not explicitly trained to be prunable which might cause large levels of performance degradation.</figcaption>              
-            </figure>                       
+              <img src="fig/all_results.jpg" alt="all_res">
+              <figcaption>2D average precision, orientation similarity, birds eye view and 3D average precision results for all trained models. </figcaption>
+            </figure>
+            Note that the channel pruning and the temporal feature linearizations have been conducted orthogonally, and combination of optimization in both axes will result in better performance of the entire joint architecture.
+            
+
+            <h4>Discussion</h4>
+            In this project, we have explored several channel pruning methods, among which Matryoshka representation learning has provided the best results as reported here. Several other experiments are ongoing where we are trying to implement a parameter shared masking method for this which will allow us to dynamically choose the number of channels to be used during inference unlike here where the channel count is arbitrarily fixed during training. The disadvantage of Matryoshka learning is that it does not take advantage of the temporal nature of the data, hence the experiments with gating and temporal feature linearization. Temporal linearization methods discussed here are promising, but the performance is not there yet, leaving room for better linearization/estimation methods. 
+            
+
+            <h4>Future Steps</h4>
+            As future work, we plan to
+            <ol>
+              <li>Incorporate adaptive gating to Matryoshka representation</li>
+              <li>Implement Matryoshka model heads as a single feature-shared unit</li>
+              <li>Combine feature linearization and channel gating for better feature estimation</li>
+              <li>Experiment with LSTM feature predictor in place of feature linearizer</li>
+              <li>Use feature flow estimator similar to optical flow to better linearize the features along the time axis.</li>
+            </ol>
+            
           </p>
 
             <figure>
