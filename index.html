@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-base="">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,9 +17,7 @@
             display: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
             mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
           },
-          boxShadow: {
-            soft: '0 10px 30px -12px rgba(0,0,0,0.25)'
-          }
+          boxShadow: { soft: '0 10px 30px -12px rgba(0,0,0,0.25)' }
         }
       }
     }
@@ -74,7 +72,7 @@
 
     <aside class="fade-in">
       <div class="rounded-2xl shadow-soft border border-black/5 dark:border-white/10 overflow-hidden">
-        <img id="profileImg" alt="Profile" class="w-full aspect-square object-cover" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop" />
+        <img id="profileImg" alt="Profile" class="w-full aspect-square object-cover" src="figures/picture.jpg" />
         <div class="p-4 text-sm">
           <div class="font-semibold">Currently</div>
           <p id="currentlyText" class="mt-1 text-gray-600 dark:text-gray-300">PhD candidate @ University, advised by Prof. X in the Y Lab.</p>
@@ -83,6 +81,14 @@
         </div>
       </div>
     </aside>
+  </section>
+
+    <!-- News -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="news">
+    <h2 class="text-2xl font-semibold">News</h2>
+    <ol id="newsTimeline" class="mt-6 relative border-s border-black/10 dark:border-white/10 ps-5">
+      <!-- items injected -->
+    </ol>
   </section>
 
   <!-- Search & Filters -->
@@ -106,18 +112,11 @@
     <div id="projectsGrid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
-  <!-- Teaching -->
+
+    <!-- Teaching -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="teaching">
     <h2 class="text-2xl font-semibold">Teaching</h2>
     <ul id="teachingList" class="mt-4 grid gap-3"></ul>
-  </section>
-
-  <!-- News -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="news">
-    <h2 class="text-2xl font-semibold">News</h2>
-    <ol id="newsTimeline" class="mt-6 relative border-s border-black/10 dark:border-white/10 ps-5">
-      <!-- items injected -->
-    </ol>
   </section>
 
   <!-- Contact -->
@@ -140,23 +139,24 @@
     "owner": {
       "name": "Mir Sayeed Mohammad",
       "title": "PhD Student, ECE · University",
-      "email": "you@university.edu",
-      "cv_url": "cv.pdf",
-      "avatar_url": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop",
+      "email": "mirsayeedmohammad(at)gatech(dot)edu",
+      "cv_url": "assets/cv.pdf",                 
+      "avatar_url": "figures/picture.jpg",        
       "links": {
         "scholar": "https://scholar.google.com/citations?user=wO_pw0AAAAAJ&hl",
-        "github": "https://github.com/yourname",
+        "github": "https://github.com/ClockWorkKid",
         "twitter": "https://x.com/yourhandle",
-        "orcid": "https://orcid.org/0000-0000-0000-0000"
+        "orcid": "https://orcid.org/0000-0001-9409-1940"
       },
-      "currently": "PhD candidate @ University, advised by Prof. X in the Y Lab."
+      "currently": "PhD candidate @ Georgia Tech, advised by Prof. Saibal Mukhopadhyay in the GREEN Lab."
     },
     "research_areas": [
       "Radar/LiDAR/Camera Fusion",
       "State-Space Models (SSM/Mamba)",
       "Fourier/Time-Frequency Learning",
       "Edge/Embedded ML",
-      "Robotics Perception"
+      "Robotics Perception",
+      "Robotic Mapping/SLAM"
     ],
     "publications": [
       {
@@ -164,7 +164,7 @@
         "authors": ["Mir Sayeed Mohammad", "Coauthor A", "Coauthor B"],
         "venue": "NeurIPS",
         "year": 2025,
-        "pdf": "papers/fssm.pdf",
+        "pdf": "papers/fssm.pdf",                
         "code": "https://github.com/yourname/fssm",
         "project": "https://yourname.github.io/fssm",
         "tags": ["SSM","Spectral","Radar","Speech"],
@@ -184,24 +184,37 @@
       }
     ],
     "projects": [
-      {"title":"RA-Lab: Radar Perception Toolkit","desc":"End-to-end radar segmentation & detection with reproducible baselines.","link":"https://github.com/yourname/ra-lab"},
-      {"title":"MambaLite","desc":"Tiny SSMs for embedded devices with streaming inference.","link":"https://github.com/yourname/mambalite"},
-      {"title":"PointCloud Fusion Viewer","desc":"Open3D viewer for LiDAR+RGB-D fusion in ROS.","link":"https://github.com/yourname/fusion-viewer"}
+      {"title":"FSSM: frequency-selective state space models for spectral representation learning.","link":"https://github.com/yourname/ra-lab"},
+      {"title":"SSMRadNet : A Sample-wise State-Space Framework for Efficient and Ultra-Light Radar Segmentation and Object Detection.","link":"https://github.com/yourname/mambalite"},
+      {"title":"Adaptive-Cloud: Dynamic Computation Control for 3D Object Detection From LIDAR Point Clouds.","link":"https://github.com/yourname/fusion-viewer"}
     ],
     "teaching": [
-      {"course":"ECE 4xxx/6xxx: Radar Signal Processing (TA)","term":"Fall 2025"},
-      {"course":"CS 6xxx: Deep Learning (Guest Lecture)","term":"Spring 2025"}
+      {"course":"CSE210: Digital Electronics","term":"Spring 2023"},
+      {"course":"CSE413: Microprocessors","term":"Summer 2023"}
     ],
     "news": [
-      {"date":"2025-10-01","text":"Paper on FSSM conditionally accepted at NeurIPS."},
-      {"date":"2025-08-15","text":"Released MambaLite v0.2 with 30% speedup on Jetson."},
-      {"date":"2025-05-10","text":"Presented workshop talk on latent mapping."}
+      {"date":"2025-09-25","text":"Paper on FSSM submitted at ICLR2026."},
+      {"date":"2025-09-09","text":"Paper SSMRadNet accepted for publication at WACV2025."},
+      {"date":"2025-05-10","text":"Paper Adaptive-Cloud published at IEEE RA-L."}
     ]
   }
   </script>
 
   <!-- Main script to render the page from JSON above -->
   <script>
+    // === Helper: resolve relative URLs against optional base ===
+    // Set <html data-base="subdir"> if you host the site under a subdirectory.
+    const BASE = document.documentElement.getAttribute('data-base') || '';
+    const rel = (u) => {
+      if (!u) return '#';
+      // Leave absolute, mailto, and data URIs untouched
+      if (/^(https?:|mailto:|data:)/i.test(u)) return u;
+      // Normalize join BASE + u
+      const cleanBase = BASE.replace(/\/$/, '');
+      const cleanU = u.replace(/^\//, '');
+      return cleanBase ? `${cleanBase}/${cleanU}` : cleanU;
+    };
+
     const $ = (sel, el = document) => el.querySelector(sel);
     const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
     const data = JSON.parse(document.getElementById('portfolio-data').textContent);
@@ -217,16 +230,16 @@
       localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // Owner & links
-    $('#cvLink').href = data.owner.cv_url || '#';
-    $('#profileImg').src = data.owner.avatar_url;
+    // Owner & links (using rel() for local assets)
+    $('#cvLink').href = rel(data.owner.cv_url || '#');
+    $('#profileImg').src = rel(data.owner.avatar_url || 'assets/profile.jpg');
     $('#currentlyText').textContent = data.owner.currently;
     $('#emailLink').textContent = data.owner.email; $('#emailLink').href = `mailto:${data.owner.email}`;
     $('#contactEmail').href = `mailto:${data.owner.email}`;
-    $('#scholarLink').href = data.owner.links.scholar;
-    $('#githubLink').href = data.owner.links.github;
-    $('#twitterLink').href = data.owner.links.twitter;
-    $('#orcidLink').href = data.owner.links.orcid;
+    $('#scholarLink').href = rel(data.owner.links.scholar);
+    $('#githubLink').href = rel(data.owner.links.github);
+    $('#twitterLink').href = rel(data.owner.links.twitter);
+    $('#orcidLink').href = rel(data.owner.links.orcid);
 
     // Research areas chips
     const areas = data.research_areas || [];
@@ -262,9 +275,9 @@
               <div class="text-sm text-gray-500 dark:text-gray-400">${authors} · <span class="font-medium">${p.venue}</span> ${p.year}</div>
               <div class="mt-2 flex flex-wrap gap-2">${tags}</div>
               <div class="mt-3 flex flex-wrap gap-3 text-sm">
-                ${p.pdf ? `<a class="underline" href="${p.pdf}" target="_blank">PDF</a>` : ''}
-                ${p.code ? `<a class="underline" href="${p.code}" target="_blank">Code</a>` : ''}
-                ${p.project ? `<a class="underline" href="${p.project}" target="_blank">Project</a>` : ''}
+                ${p.pdf ? `<a class="underline" href="${rel(p.pdf)}" target="_blank">PDF</a>` : ''}
+                ${p.code ? `<a class="underline" href="${rel(p.code)}" target="_blank">Code</a>` : ''}
+                ${p.project ? `<a class="underline" href="${rel(p.project)}" target="_blank">Project</a>` : ''}
                 <button class="copy-bib underline" data-bib='${(p.bibtex||'').replace(/'/g, "&#39;")}'>Copy BibTeX</button>
               </div>
               <div id="${id}" hidden class="mt-4 text-sm text-gray-700 dark:text-gray-200">${p.abstract || ''}</div>
@@ -298,7 +311,7 @@
     // Projects
     const projGrid = $('#projectsGrid');
     projGrid.innerHTML = (data.projects||[]).map(p => `
-      <a href="${p.link}" target="_blank" class="rounded-2xl border border-black/5 dark:border-white/10 p-4 hover:shadow-soft bg-white dark:bg-neutral-900 block">
+      <a href="${rel(p.link)}" target="_blank" class="rounded-2xl border border-black/5 dark:border-white/10 p-4 hover:shadow-soft bg-white dark:bg-neutral-900 block">
         <div class="font-semibold">${p.title}</div>
         <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">${p.desc}</p>
       </a>`).join('');
