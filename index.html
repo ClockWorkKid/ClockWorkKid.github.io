@@ -1,346 +1,323 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <title>Latent Pruning for Compute Optimization in 3D Object Detection Frameworks</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PhD Portfolio · Mir Sayeed Mohammad</title>
+  <meta name="description" content="PhD student portfolio: publications, projects, teaching, and contact." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config (optional fonts & dark mode class)
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+            mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+          },
+          boxShadow: {
+            soft: '0 10px 30px -12px rgba(0,0,0,0.25)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth reveal */
+    .fade-in { animation: fade 0.5s ease-out both; }
+    @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .prose a { text-decoration: underline; text-underline-offset: 3px; }
+    .tag { @apply text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200; }
+  </style>
 </head>
-<body>
+<body class="bg-white text-gray-900 dark:bg-neutral-950 dark:text-neutral-100 font-display antialiased">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-neutral-950/60 border-b border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-4">
+      <a href="#" class="flex items-center gap-3 group">
+        <span class="text-2xl">🎓</span>
+        <div>
+          <div class="font-semibold leading-tight">Mir Sayeed Mohammad</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400">PhD Student · ECE · Georgia Tech</div>
+        </div>
+      </a>
+      <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:opacity-70" href="#about">About</a>
+        <a class="hover:opacity-70" href="#publications">Publications</a>
+        <a class="hover:opacity-70" href="#projects">Projects</a>
+        <a class="hover:opacity-70" href="#teaching">Teaching</a>
+        <a class="hover:opacity-70" href="#news">News</a>
+        <a class="hover:opacity-70" href="#contact">Contact</a>
+      </nav>
+      <div class="ml-2 flex items-center gap-2">
+        <button id="themeToggle" class="px-3 py-1.5 text-xs rounded-full border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10">Toggle Theme</button>
+        <a id="cvLink" class="px-3 py-1.5 text-xs rounded-full bg-black text-white dark:bg-white dark:text-black" href="#" target="_blank" rel="noopener">CV</a>
+      </div>
+    </div>
+  </header>
 
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-10 grid md:grid-cols-[1fr,320px] gap-8">
+    <div class="fade-in">
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Hi, I'm <span class="underline decoration-4 decoration-emerald-400/70">Mir Sayeed Mohammad</span>.</h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">I’m a PhD student researching <span class="font-semibold">efficient perception for autonomous systems</span> — spanning radar/LiDAR/camera fusion, sequence models, and hardware‑aware ML. I build deployable models, open datasets, and reproducible tools.</p>
+      <div id="researchAreas" class="mt-5 flex flex-wrap gap-2"></div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a id="scholarLink" class="tag" href="#" target="_blank" rel="noopener">Google Scholar</a>
+        <a id="githubLink" class="tag" href="#" target="_blank" rel="noopener">GitHub</a>
+        <a id="twitterLink" class="tag" href="#" target="_blank" rel="noopener">X/Twitter</a>
+        <a id="orcidLink" class="tag" href="#" target="_blank" rel="noopener">ORCID</a>
+      </div>
+    </div>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Latent Pruning for Compute Optimization in 3D Object Detection Frameworks</h1>
+    <aside class="fade-in">
+      <div class="rounded-2xl shadow-soft border border-black/5 dark:border-white/10 overflow-hidden">
+        <img id="profileImg" alt="Profile" class="w-full aspect-square object-cover" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop" />
+        <div class="p-4 text-sm">
+          <div class="font-semibold">Currently</div>
+          <p id="currentlyText" class="mt-1 text-gray-600 dark:text-gray-300">PhD candidate @ University, advised by Prof. X in the Y Lab.</p>
+          <div class="mt-3 font-semibold">Email</div>
+          <a id="emailLink" href="mailto:you@university.edu" class="mt-1 block text-emerald-600 dark:text-emerald-400">you@university.edu</a>
+        </div>
+      </div>
+    </aside>
+  </section>
 
+  <!-- Search & Filters -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-12" id="publications">
+    <div class="flex flex-col sm:flex-row sm:items-end gap-4">
+      <div class="flex-1">
+        <h2 class="text-2xl font-semibold">Publications</h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Filter by year, venue, or tag; click ▸ to see abstract/BibTeX.</p>
+      </div>
+      <div class="flex gap-2 w-full sm:w-auto">
+        <input id="pubSearch" type="search" placeholder="Search title/authors/tags…" class="flex-1 sm:w-80 px-3 py-2 text-sm rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900" />
+        <select id="yearFilter" class="px-3 py-2 text-sm rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900"></select>
+      </div>
+    </div>
+    <div id="pubList" class="mt-6 grid gap-4"></div>
+  </section>
 
-          
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Mir Sayeed Mohammad</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Mizanur Rahaman Nayan</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="FOURTH AUTHOR PERSONAL LINK" target="_blank">Sujoy Mondal</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Uday Kamal</a>
-                  </span>
-                  </div>  
-     
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">Georgia Institute of Technology<br>CS 7641</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+  <!-- Projects -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="projects">
+    <h2 class="text-2xl font-semibold">Selected Projects</h2>
+    <div id="projectsGrid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </section>
 
-                </a>
-              </span>
+  <!-- Teaching -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="teaching">
+    <h2 class="text-2xl font-semibold">Teaching</h2>
+    <ul id="teachingList" class="mt-4 grid gap-3"></ul>
+  </section>
+
+  <!-- News -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16" id="news">
+    <h2 class="text-2xl font-semibold">News</h2>
+    <ol id="newsTimeline" class="mt-6 relative border-s border-black/10 dark:border-white/10 ps-5">
+      <!-- items injected -->
+    </ol>
+  </section>
+
+  <!-- Contact -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 mb-24" id="contact">
+    <h2 class="text-2xl font-semibold">Contact</h2>
+    <p class="mt-2 text-gray-600 dark:text-gray-300">Best way to reach me is email. For collaboration inquiries, include a 2–3 sentence problem statement and any relevant links.</p>
+    <div class="mt-4 flex gap-3">
+      <a id="contactEmail" class="px-4 py-2 rounded-xl bg-emerald-600 text-white" href="mailto:you@university.edu">Email me</a>
+      <a id="contactPGP" class="px-4 py-2 rounded-xl border border-black/10 dark:border-white/10" href="#">PGP</a>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center text-sm text-gray-500 dark:text-gray-400">
+    <div>© <span id="year"></span> Mir Sayeed Mohammad. Built with a single HTML file + Tailwind CDN. <a class="underline" href="#about">Back to top</a>.</div>
+  </footer>
+
+  <!-- Data blob you can edit without touching JS -->
+  <script id="portfolio-data" type="application/json">
+  {
+    "owner": {
+      "name": "Mir Sayeed Mohammad",
+      "title": "PhD Student, ECE · University",
+      "email": "you@university.edu",
+      "cv_url": "cv.pdf",
+      "avatar_url": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop",
+      "links": {
+        "scholar": "https://scholar.google.com/citations?user=wO_pw0AAAAAJ&hl",
+        "github": "https://github.com/yourname",
+        "twitter": "https://x.com/yourhandle",
+        "orcid": "https://orcid.org/0000-0000-0000-0000"
+      },
+      "currently": "PhD candidate @ University, advised by Prof. X in the Y Lab."
+    },
+    "research_areas": [
+      "Radar/LiDAR/Camera Fusion",
+      "State-Space Models (SSM/Mamba)",
+      "Fourier/Time-Frequency Learning",
+      "Edge/Embedded ML",
+      "Robotics Perception"
+    ],
+    "publications": [
+      {
+        "title": "FSSM: Fourier‑Initialized State Space Modules for Spectral Front‑Ends",
+        "authors": ["Mir Sayeed Mohammad", "Coauthor A", "Coauthor B"],
+        "venue": "NeurIPS",
+        "year": 2025,
+        "pdf": "papers/fssm.pdf",
+        "code": "https://github.com/yourname/fssm",
+        "project": "https://yourname.github.io/fssm",
+        "tags": ["SSM","Spectral","Radar","Speech"],
+        "abstract": "We propose FSSM, a frequency‑selective SSM front‑end that...",
+        "bibtex": "@inproceedings{your2025fssm,\n  title={FSSM: Fourier-Initialized State Space Modules...},\n  author={Mir Sayeed Mohammad and Coauthor A and Coauthor B},\n  booktitle={NeurIPS},\n  year={2025}\n}"
+      },
+      {
+        "title": "Latent Mapping for Long‑Horizon Robotics",
+        "authors": ["Mir Sayeed Mohammad", "Coauthor C"],
+        "venue": "ICRA",
+        "year": 2024,
+        "pdf": "papers/latent-mapping.pdf",
+        "code": "https://github.com/yourname/latent-mapping",
+        "tags": ["Mapping","Robotics","Transformers"],
+        "abstract": "We cast SLAM updates as latent state updates using...",
+        "bibtex": "@inproceedings{your2024latent, ...}"
+      }
+    ],
+    "projects": [
+      {"title":"RA-Lab: Radar Perception Toolkit","desc":"End-to-end radar segmentation & detection with reproducible baselines.","link":"https://github.com/yourname/ra-lab"},
+      {"title":"MambaLite","desc":"Tiny SSMs for embedded devices with streaming inference.","link":"https://github.com/yourname/mambalite"},
+      {"title":"PointCloud Fusion Viewer","desc":"Open3D viewer for LiDAR+RGB-D fusion in ROS.","link":"https://github.com/yourname/fusion-viewer"}
+    ],
+    "teaching": [
+      {"course":"ECE 4xxx/6xxx: Radar Signal Processing (TA)","term":"Fall 2025"},
+      {"course":"CS 6xxx: Deep Learning (Guest Lecture)","term":"Spring 2025"}
+    ],
+    "news": [
+      {"date":"2025-10-01","text":"Paper on FSSM conditionally accepted at NeurIPS."},
+      {"date":"2025-08-15","text":"Released MambaLite v0.2 with 30% speedup on Jetson."},
+      {"date":"2025-05-10","text":"Presented workshop talk on latent mapping."}
+    ]
+  }
+  </script>
+
+  <!-- Main script to render the page from JSON above -->
+  <script>
+    const $ = (sel, el = document) => el.querySelector(sel);
+    const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+    const data = JSON.parse(document.getElementById('portfolio-data').textContent);
+    const state = { query: '', year: 'All' };
+
+    // Theme toggle with persistence
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) root.classList.add('dark');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Owner & links
+    $('#cvLink').href = data.owner.cv_url || '#';
+    $('#profileImg').src = data.owner.avatar_url;
+    $('#currentlyText').textContent = data.owner.currently;
+    $('#emailLink').textContent = data.owner.email; $('#emailLink').href = `mailto:${data.owner.email}`;
+    $('#contactEmail').href = `mailto:${data.owner.email}`;
+    $('#scholarLink').href = data.owner.links.scholar;
+    $('#githubLink').href = data.owner.links.github;
+    $('#twitterLink').href = data.owner.links.twitter;
+    $('#orcidLink').href = data.owner.links.orcid;
+
+    // Research areas chips
+    const areas = data.research_areas || [];
+    const areaWrap = $('#researchAreas');
+    areas.forEach(a => {
+      const span = document.createElement('span');
+      span.className = 'tag'; span.textContent = a; areaWrap.appendChild(span);
+    });
+
+    // Publications render
+    const years = Array.from(new Set(data.publications.map(p => p.year))).sort((a,b)=>b-a);
+    const yearSelect = $('#yearFilter');
+    yearSelect.innerHTML = ['All', ...years].map(y => `<option value="${y}">${y}</option>`).join('');
+
+    function matchQuery(p) {
+      if (!state.query) return true;
+      const t = state.query.toLowerCase();
+      const hay = [p.title, p.venue, p.abstract, (p.authors||[]).join(' '), (p.tags||[]).join(' ')].join(' ').toLowerCase();
+      return hay.includes(t);
+    }
+    function matchYear(p) { return state.year === 'All' || p.year == state.year; }
+
+    function pubCard(p, idx) {
+      const id = `pub-${idx}`;
+      const tags = (p.tags||[]).map(t => `<span class="tag">${t}</span>`).join(' ');
+      const authors = (p.authors||[]).join(', ');
+      return `
+        <article class="rounded-2xl border border-black/5 dark:border-white/10 p-4 shadow-sm bg-white dark:bg-neutral-900 fade-in">
+          <div class="flex items-start gap-3">
+            <button aria-expanded="false" aria-controls="${id}" class="toggle text-lg leading-none">▸</button>
+            <div class="flex-1">
+              <h3 class="font-semibold">${p.title}</h3>
+              <div class="text-sm text-gray-500 dark:text-gray-400">${authors} · <span class="font-medium">${p.venue}</span> ${p.year}</div>
+              <div class="mt-2 flex flex-wrap gap-2">${tags}</div>
+              <div class="mt-3 flex flex-wrap gap-3 text-sm">
+                ${p.pdf ? `<a class="underline" href="${p.pdf}" target="_blank">PDF</a>` : ''}
+                ${p.code ? `<a class="underline" href="${p.code}" target="_blank">Code</a>` : ''}
+                ${p.project ? `<a class="underline" href="${p.project}" target="_blank">Project</a>` : ''}
+                <button class="copy-bib underline" data-bib='${(p.bibtex||'').replace(/'/g, "&#39;")}'>Copy BibTeX</button>
+              </div>
+              <div id="${id}" hidden class="mt-4 text-sm text-gray-700 dark:text-gray-200">${p.abstract || ''}</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </article>`;
+    }
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Introduction</h2>
-        <div class="content has-text-justified">
-          <p>
-            Our work aims to reduce the computation in a deep neural network model deployed in 3D object detection task by removing channels in different model layers and optimizing inference. Structured pruning methods, such as CoFi, combine coarse and fine-grained units with layer-wise distillation to enhance model compression and inference speed without significant accuracy loss (Yu et al.; Wang et al.). Layer and head pruning in Transformer models also effectively reduce model size while maintaining performance (Yu et al.). Regularization-based pruning methods like L1 regularization and growing regularization gradually drive unimportant weights to zero before pruning, balancing parameter reduction and accuracy (Yeh et al.; Wang et al., "Neural Pruning via Growing Regularization"). Importance-based pruning uses criteria like neuron importance score propagation (NISP) and Taylor expansion-based methods to iteratively prune less important neurons, retaining essential features and performance (Yu et al.; Molchanov et al.; Sunil and Salem; Liu et al.). These techniques collectively improve the efficiency and performance of neural networks by systematically reducing their complexity.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    function renderPubs() {
+      const list = $('#pubList');
+      const pubs = data.publications.filter(p => matchYear(p) && matchQuery(p));
+      list.innerHTML = pubs.map(pubCard).join('');
+      // Hook up toggles & BibTeX copy
+      $$('.toggle', list).forEach(btn => btn.addEventListener('click', () => {
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.textContent = expanded ? '▸' : '▾';
+        btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        panel.hidden = expanded;
+      }));
+      $$('.copy-bib', list).forEach(b => b.addEventListener('click', async () => {
+        const txt = b.dataset.bib.replace(/&#39;/g, "'");
+        try { await navigator.clipboard.writeText(txt); b.textContent = 'Copied!'; setTimeout(()=> b.textContent='Copy BibTeX', 1200); } catch { alert('Copy failed'); }
+      }));
+    }
 
+    $('#pubSearch').addEventListener('input', e => { state.query = e.target.value.trim(); renderPubs(); });
+    $('#yearFilter').addEventListener('change', e => { state.year = e.target.value; renderPubs(); });
+    renderPubs();
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Problem Definition</h2>
-        <div class="content has-text-justified">
-          <p>
-            LIDAR scanners are vital for autonomous systems, providing essential point cloud data. Processing this data incurs significant computational costs. Techniques like PointPillars (Lang, Alex H., et al.) convert point clouds into voxels, often leading to redundancy. Optimizing voxelized data processing enhances efficiency without sacrificing accuracy. Methods like Matryoshka Representation Learning prune feature channels, reducing computational load while maintaining performance. This project integrates pruning within PointPillars, using adaptive latent regularization to cut computation and memory needs, evaluating detection accuracy across various scenes and object classes.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    // Projects
+    const projGrid = $('#projectsGrid');
+    projGrid.innerHTML = (data.projects||[]).map(p => `
+      <a href="${p.link}" target="_blank" class="rounded-2xl border border-black/5 dark:border-white/10 p-4 hover:shadow-soft bg-white dark:bg-neutral-900 block">
+        <div class="font-semibold">${p.title}</div>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">${p.desc}</p>
+      </a>`).join('');
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Methods</h2>
-        <div class="content has-text-justified">
-          <p>Pointcloud data is a stream of points reflecting LASER in the Cartesian coordinate system. For object detection, the space is converted to a grid structure called voxels. In the PointPillars architecture, points are filtered within a field of view, grouped into pillars in the x-y plane, and augmented to ensure each pillar contains the same number of points. The pillars then pass through an invariant dense layer, creating a fixed number of features, forming 2D pseudo images. Noise is added during preprocessing and pillar encoding to compensate for sensor uncertainty, with additional augmentation methods like rotation and flipping.
-          </p> <p>
-            Object detection frameworks commonly use algorithms such as anchor generation, bounding box encoding, and non-max suppression. Models like PointNet, PointNet++, PV-RCNN, VoxelNet, and F-ConvNet are utilized for 3D object detection. These pipelines include modules like the encoder, backbone, and model head, with the dense backbone handling most feature processing and computation. Our goal is to develop a model-agnostic learning approach, ensuring the pruning method applies to all convolution/dense layer-based architectures.
-            <figure><img src="fig/pointpillars.png" alt="PointPillars architecture">
-              <figcaption>PointPillars architecture</figcaption>
-            </figure>
-          </p><p>
-            Our work optimizes model architecture by pruning parallel channels in each layer. Not all feature channels are necessary, and the latent space often contains redundant features. The pruning method regularizes channels, imposing higher penalties on higher channel outputs, encouraging the model to minimize unnecessary channels to zero output. During inference, a distilled smaller model retains only the non-zero parts of the parent model, improving efficiency while reducing computational requirements.
-            <figure>
-            <img src="fig/pruning.png" alt="Proposed pruning method">
-            <figcaption>Proposed pruning method</figcaption>
-          </figure>
-          </p>
-          <p>
-            <h4>Midterm Checkpoint</h4>
-            We jointly trained several model heads simultaneously utilizing different number of channels from the pillar feature extractor. The detection losses for each head are jointly optimized. The modified training scheme is provided below:
-            <figure>
-              <img src="fig/matryoshka.png" alt="matryoshka">
-              <figcaption>Implemented Matryoshka representation learning (Kusupati, Aditya, et al.)</figcaption>
-            </figure>
-            The key motivation behind this implementation is that the point cloud feature extractor is common to all the model heads, and based on the desired level of computation, a different model head can be selected that uses more or less number of features. The computational advantage of the different model heads are the key motivation behind this scheme.
-            <figure>
-              <img src="fig/computation.png" alt="Computation">
-              <figcaption>Reducing feature volume from pillar feature net to backbone by 75% can reduce host computation by ~93.2% and memory usage by ~93.6%.</figcaption>              
-            </figure> 
-            <h4>Final Checkpoint</h4>
-            In the second stage of our project, we take a look at reducing computation along the temporal axis of the video point cloud data. In this part, the key argument is that for very small time steps, the change of features in the spatial domain is also very small. So we can (1) Reuse some features calculated in the previous time step (2) Linearize some features calculated in the previous time step and estimate the future featuers. Based on this argument, we experiment with three separate models. (a) Feature Gating (b) Temporal Feature Linearization (c) Adaptive Feature Linearization. All these experiments aim to take advantage of the temporal redundancy of the data. 
-            <figure>
-              <img src="fig/gating.png" alt="gating">
-              <figcaption>(a) Feature Gating </figcaption>
-            </figure>
-            (a) NN models have many parallel operations, i.e. each output channel of a convolutional layer uses a separate filter kernel. Parallel computations can be replaced by reusing features from a previous time step. We introduce a temporal gating function that chooses whether to recompute new features or pass existing features from previous time-step to the next layer. 
-            <figure>
-              <img src="fig/linearization.png" alt="linearization">
-              <figcaption>(b) Temporal Feature Linearization </figcaption>
-            </figure>
-            (b) Instead of fully computing features in each time step, we try to estimate the outputs of the backbone with a smaller model. The small estimator model bypasses the backbone and estimates the output feature difference based on the input feature difference. Bypassing the backbone can hugely reduce the computation
-            
-            <figure>
-              <img src="fig/adaptive.png" alt="adaptive">
-              <figcaption>(c) Adaptive Feature Linearization </figcaption>
-            </figure>
-            (c) The adaptive gating mechanism makes decision on when to start a new estimation sequence. The gate creates a geometric probability of when to switch based on the switching on previous time steps.
-            
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    // Teaching
+    const teach = $('#teachingList');
+    teach.innerHTML = (data.teaching||[]).map(t => `<li class="rounded-xl border border-black/5 dark:border-white/10 p-3 bg-white dark:bg-neutral-900">${t.course} — <span class="text-gray-500 dark:text-gray-400">${t.term}</span></li>`).join('');
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Results and Discussion</h2>
-        <div class="content has-text-justified">
-          <p>
-            The goal is to reduce frame-by-frame computation in object detection while maintaining performance. We will evaluate performance vs. computation, aiming to minimize the curve's slope, meaning reduced computation with minimal performance loss. Key metrics: 2D AP, BEV AP, 3D AP, and MACs/FLOPs during inference.
-          </p>  
-          <p>
-            <h4>Midterm Checkpoint</h4>
-            The joint training scheme converges after 160 training epochs and are evaluated for performance.
-            <figure>
-              <img src="fig/matryoshka_training.png" alt="trainig">
-              <figcaption>From train and validation loss plots, we can see that lowering the number of channels causes the loss to saturate at a higher global minima, which is also reflected in the performance metrics. </figcaption>
-            </figure>
-            One interesting key observation in the 2D bounding box average precision is that the detection of vehicle class objects are consistent for reduced feature channels, meaning that for easy/less cluttered scenes, vehicles can be easily detected at 93% less computation overhead - which is a signifiant achievement. The key problem is knowing when to switch between the different model heads.
-            <figure>
-              <img src="fig/matryoshka_out_2D.png" alt="2D">
-              <figcaption>2D bounding box average precision for easy-medium-hard splits for different feature channels </figcaption>              
-            </figure> 
+    // News timeline
+    const news = $('#newsTimeline');
+    news.innerHTML = (data.news||[]).map(n => `
+      <li class="mb-6"> 
+        <div class="absolute -left-1.5 mt-1.5 w-3 h-3 rounded-full bg-emerald-500"></div>
+        <time class="text-xs text-gray-500 dark:text-gray-400">${new Date(n.date).toLocaleDateString()}</time>
+        <div class="mt-1">${n.text}</div>
+      </li>`).join('');
 
-            <figure>
-              <img src="fig/matryoshka_qualitative_easy.png" alt="qualeasy">
-              <figcaption>Visual detection results in an easy scene. We can see that vehicles (large objects) are mostly detected fine in easy scenes for any number of feature channels.</figcaption>              
-            </figure> 
-            <figure>
-              <img src="fig/matryoshka_qualitative_hard.png" alt="qualHard">
-              <figcaption>Visual results in a difficult scene. We can see that lowering the number of channels is often causing false detections in smaller objects.</figcaption>              
-            </figure>  
-            <h4>Final Checkpoint</h4>
-            In the following table, we combine the results of the Matryoshka representation learning scheme as well as the temporal feature reuse methods that we experimented with.
-            <figure>
-              <img src="fig/all_results.jpg" alt="all_res">
-              <figcaption>2D average precision, orientation similarity, birds eye view and 3D average precision results for all trained models. </figcaption>
-            </figure>
-            Note that the channel pruning and the temporal feature linearizations have been conducted orthogonally, and combination of optimization in both axes will result in better performance of the entire joint architecture.
-            
-
-            <h4>Discussion</h4>
-            In this project, we have explored several channel pruning methods, among which Matryoshka representation learning has provided the best results as reported here. Several other experiments are ongoing where we are trying to implement a parameter shared masking method for this which will allow us to dynamically choose the number of channels to be used during inference unlike here where the channel count is arbitrarily fixed during training. The disadvantage of Matryoshka learning is that it does not take advantage of the temporal nature of the data, hence the experiments with gating and temporal feature linearization. Temporal linearization methods discussed here are promising, but the performance is not there yet, leaving room for better linearization/estimation methods. 
-            
-
-            <h4>Future Steps</h4>
-            As future work, we plan to
-            <ol>
-              <li>Incorporate adaptive gating to Matryoshka representation</li>
-              <li>Implement Matryoshka model heads as a single feature-shared unit</li>
-              <li>Combine feature linearization and channel gating for better feature estimation</li>
-              <li>Experiment with LSTM feature predictor in place of feature linearizer</li>
-              <li>Use feature flow estimator similar to optical flow to better linearize the features along the time axis.</li>
-            </ol>
-            
-          </p>
-
-            <figure>
-              <img src="fig/gantt.jpg" alt="Gantt">
-              <figcaption>Gantt Chart for Workflow</figcaption>
-            </figure>
-          </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-<!-- Literature Review -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">References</h2>
-        <div class="content has-text-justified">
-          <ol>
-          <li>
-              Lang, Alex H., et al. "Pointpillars: Fast encoders for object detection from point clouds." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2019.
-          </li>
-          <li>
-              Yu, Chenglin, et al. "Structured Pruning Learns Compact and Accurate Models." <em>arXiv</em>, 2022.
-          </li>
-          <li>
-              Wang, Jiaxiang, et al. "Structured Pruning for Deep Convolutional Neural Networks: A Survey." <em>arXiv</em>, 2023.
-          </li>
-          <li>
-              Yeh, Chih-Kuan, et al. "Deep Trim: Revisiting L1 Regularization for Connection Pruning of Deep Networks." <em>Papers with Code</em>, 2019.
-          </li>
-          <li>
-              Wang, Jiaxiang, et al. "Neural Pruning via Growing Regularization." <em>arXiv</em>, 2020.
-          </li>
-          <li>
-              Yu, Ritchie, et al. "NISP: Pruning Networks Using Neuron Importance Score Propagation." <em>arXiv</em>, 2017.
-          </li>
-          <li>
-              Molchanov, Pavlo, et al. "Importance Estimation for Neural Network Pruning." <em>arXiv</em>, 2019.
-          </li>
-          <li>
-              Sunil, Vadera, and Salem Ameen. "Methods for Pruning Deep Neural Networks." <em>arXiv</em>, 2020.
-          </li>
-          <li>
-              Liu, Zhuang, et al. "Rethinking the Value of Network Pruning." <em>arXiv</em>, 2019.
-          </li>
-          <li>
-            Kusupati, Aditya, et al. "Matryoshka representation learning." Advances in Neural Information Processing Systems 35 (2022): 30233-30249.
-          </li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/W3zkv7_Dq3Q" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
-
-
-
-
-
-
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            </a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+    // Footer year
+    $('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
